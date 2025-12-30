@@ -1,4 +1,19 @@
-# NearRmutt
+# Near RMUTT (Angular)
+
+**Subject:** Frontend System Development
+
+**Type:** Three-Person Project
+
+## Description
+"Near RMUTT" – Student Accommodation Marketplace
+
+Developed a web-based platform connecting RMUTT students with local landlords. Designed a dual-role system that enables tenants to browse and book accommodations, while allowing property owners to list and manage their rental units efficiently.
+
+
+<br><br><br>
+
+---
+
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
 
