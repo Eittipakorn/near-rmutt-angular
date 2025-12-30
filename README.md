@@ -9,6 +9,9 @@
 
 Developed a web-based platform connecting RMUTT students with local landlords. Designed a dual-role system that enables tenants to browse and book accommodations, while allowing property owners to list and manage their rental units efficiently.
 
+<br>
+
+![Landing page](screenshots/screenshot_01.jpeg)
 
 <br><br><br>
 
