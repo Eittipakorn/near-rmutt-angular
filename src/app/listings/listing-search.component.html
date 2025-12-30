@@ -1,0 +1,33 @@
+
+<div class="container">
+  <h2 class="page-title">ผลการค้นหา</h2>
+  <div class="search-panel">
+    <div class="search-grid">
+      <input #q type="search" placeholder="ค้นหาตามชื่อ" (input)="query.set(q.value)" />
+      <input #min type="number" placeholder="ราคาต่ำสุด (฿)" (input)="minPrice.set(min.value === '' ? null : min.valueAsNumber)" />
+      <input #max type="number" placeholder="ราคาสูงสุด (฿)" (input)="maxPrice.set(max.value === '' ? null : max.valueAsNumber)" />
+      <button class="btn">ค้นหา</button>
+      <button class="btn btn-outline" (click)="query.set(''); minPrice.set(null); maxPrice.set(null)">ล้าง</button>
+    </div>
+  </div>
+
+  <div class="table-wrap" style="margin-top:14px;">
+    <table class="table">
+      <thead>
+        <tr><th>#</th><th>ชื่อประกาศ</th><th>พื้นที่</th><th>ประเภท</th><th>ราคา/ด.</th><th></th></tr>
+      </thead>
+      <tbody>
+        @for (d of data(); track d.id) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ d.title }}</td>
+            <td>{{ d.area }}</td>
+            <td>{{ d.type }}</td>
+            <td>{{ d.price | currency:'THB':'symbol' }}</td>
+            <td><a class="badge" [routerLink]="['/listing', d.id]">ดู</a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

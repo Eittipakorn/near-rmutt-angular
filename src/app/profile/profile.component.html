@@ -1,0 +1,29 @@
+
+<h2 class="page-title" style="text-align: left; padding-left: 190px;">โปรไฟล์ของฉัน</h2>
+<div class="container">
+  <div class="search-panel" style="max-width:900px;">
+    @if (!model) { <div>กรุณาเข้าสู่ระบบก่อน</div> } @else {
+      @if (!editing) {
+        <div style="display:grid; gap:8px;">
+          <div><strong>ชื่อ</strong> {{ model!.name }}</div>
+          <div><strong>อีเมล</strong> {{ model!.email }}</div>
+          <div><strong>เบอร์โทรศัพท์</strong> {{ model!.phone }}</div>
+          <div><strong>บทบาท</strong> {{ model!.role }}</div>
+          <div style="display:flex; gap:10px; margin-top:8px;">
+            <button class="btn btn-outline" (click)="editing = true">แก้ไขข้อมูลสมาชิก</button>
+            <button class="btn" (click)="us.logout()">เปลี่ยนบัญชี</button>
+          </div>
+        </div>
+      } @else {
+        <form (ngSubmit)="save()" class="form-grid" style="display:grid; gap:12px;">
+          <label>ชื่อ-นามสกุล <input type="text" [(ngModel)]="model!.name" name="name" /></label>
+          <label>อีเมล <input type="email" [(ngModel)]="model!.email" name="email" /></label>
+          <label>โทรศัพท์ <input type="tel" [(ngModel)]="model!.phone" name="phone" /></label>
+          <button class="btn" type="submit">บันทึกข้อมูลสมาชิก</button>
+          <button class="btn btn-outline" type="button" (click)="editing=false">ยกเลิก</button>
+        </form>
+        @if (message) { <div class="alert">{{ message }}</div> }
+      }
+    }
+  </div>
+</div>

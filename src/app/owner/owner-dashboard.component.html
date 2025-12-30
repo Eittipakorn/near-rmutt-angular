@@ -1,0 +1,31 @@
+
+<h2 class="page-title container" style="text-align: left; padding-left: 190px;">สวัสดีครับ/ค่ะ, {{ us.currentUser()?.name }}</h2>
+<div class="container" style="display:grid; gap:14px;">
+  <div class="cards" style="grid-template-columns: repeat(4, 1fr);">
+    <article class="card"><h3>ประกาศทั้งหมด</h3><div class="price">{{ stats.total }}</div></article>
+    <article class="card"><h3>ประกาศที่เปิดอยู่</h3><div class="price">{{ stats.active }}</div></article>
+    <article class="card"><h3>คำขอจองที่กำลังดำเนินการ</h3><div class="price">{{ stats.pending }}</div></article>
+    <article class="card"><h3>จองที่อนุมัติแล้ว (ล่าสุด)</h3><div class="price">{{ stats.approved }}</div></article>
+  </div>
+  <div style="display:flex; gap:8px;">
+    <a class="btn" routerLink="/create">+ ลงประกาศใหม่</a>
+    <a class="btn btn-outline" routerLink="/owner/listings">จัดการประกาศ</a>
+    <a class="btn btn-outline" routerLink="/owner/bookings">คำขอจอง</a>
+    <a class="btn btn-outline" routerLink="/upload">อัปโหลดรูปประกาศ</a>
+  </div>
+  <div class="table-wrap">
+    <h3 style="margin:0 0 8px;">คำขอล่าสุด</h3>
+    <table class="table">
+      <thead><tr><th>รายการ</th><th>ช่วงวันที่</th><th>สถานะ</th></tr></thead>
+      <tbody>
+        @for (b of recent(); track b.id) {
+          <tr>
+            <td>#{{ b.id }}</td>
+            <td>{{ b.startDate }} – {{ b.endDate }}</td>
+            <td><span class="badge" [class.status-approved]="b.status==='approved'" [class.status-rejected]="b.status==='rejected'" [class.status-cancelled]="b.status==='cancelled'">{{ b.status }}</span></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

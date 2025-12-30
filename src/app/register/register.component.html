@@ -1,0 +1,27 @@
+
+<div class="container login-page">
+  <div class="search-panel">
+    <h2 class="page-title" style=" text-align: center;">สมัครสมาชิก</h2>
+    <form (ngSubmit)="onSubmit()" novalidate class="form-grid">
+      <label>ชื่อ-นามสกุล
+        <input type="text" [(ngModel)]="name" name="name" required />
+      </label>
+      <label>อีเมล
+        <input type="email" [(ngModel)]="email" name="email" required autocomplete="email" />
+      </label>
+      <label>โทรศัพท์
+        <input type="tel" [(ngModel)]="phone" name="phone" required />
+      </label>
+      <label>บทบาท
+        <select [(ngModel)]="role" name="role" required>
+          <option value="tenant">ผู้เช่า (Tenant)</option>
+          <option value="owner">เจ้าของหอ (Owner)</option>
+        </select>
+      </label>
+      <label>รหัสผ่าน
+        <input type="password" [(ngModel)]="password" name="password" required autocomplete="new-password" />
+      </label>
+      <button type="submit" class="btn">สมัครสมาชิก</button>
+    </form>
+  </div>
+</div>

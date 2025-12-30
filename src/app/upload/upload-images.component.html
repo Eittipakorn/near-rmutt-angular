@@ -1,0 +1,23 @@
+
+<h2 class="page-title container" style="text-align: left; padding-left: 280px;">อัปโหลดรูปเข้าประกาศ</h2>
+<div class="container search-panel" style="max-width:900px;">
+  <form class="form-grid" style="display:grid; gap:12px;">
+    <label>เลือกประกาศของฉัน
+      <select [(ngModel)]="listingId" name="listingId">
+        <option [ngValue]="null">-- เลือกประกาศ --</option>
+        @for (l of myListings; track l.id) { <option [ngValue]="l.id">{{ l.title }}</option> }
+      </select>
+    </label>
+    <label>เลือกไฟล์ (อัปโหลดได้หลายไฟล์)
+      <input type="file" (change)="onFiles($event)" multiple accept="image/*">
+    </label>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      @for (p of previews; track p) { <img [src]="p" style="width:140px; height:100px; object-fit:cover; border:1px solid #e2e8f0; border-radius:8px;" /> }
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button type="button" class="btn" (click)="upload()">อัปโหลด</button>
+      <button type="button" class="btn btn-outline" (click)="previews=[]">ล้าง</button>
+    </div>
+    @if (message) { <div class="alert">{{ message }}</div> }
+  </form>
+</div>

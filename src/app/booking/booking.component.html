@@ -1,0 +1,11 @@
+
+<h2 class="page-title container">จองห้อง</h2>
+<div class="container search-panel" style="max-width:840px;">
+  <form (ngSubmit)="submit()" novalidate class="form-grid" style="display:grid; gap:12px;">
+    <label>วันที่เริ่ม <input type="date" [(ngModel)]="startDate" name="startDate" required /></label>
+    <label>วันที่สิ้นสุด <input type="date" [(ngModel)]="endDate" name="endDate" required /></label>
+    <label>หมายเหตุ <textarea [(ngModel)]="notes" name="notes" rows="3"></textarea></label>
+    <button type="submit" class="btn">ส่งคำขอจอง</button>
+  </form>
+  @if (message) { <div class="alert" style="margin-top:10px;">{{ message }}</div> }
+</div>

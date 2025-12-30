@@ -1,0 +1,37 @@
+
+<h2 class="page-title container" style="text-align: left; padding-left: 190px;">รายงานสำหรับเจ้าของหอ</h2>
+<div class="container search-panel">
+  <div class="filters" style="margin-bottom:10px;">
+    <label>ประกาศใหม่ของฉัน (ช่วงวันที่)</label>
+    <input type="date" [(ngModel)]="from">
+    <input type="date" [(ngModel)]="to">
+    <button class="btn">ค้นหา</button>
+    <button class="pill" (click)="setRange('today')">วันนี้</button>
+    <button class="pill" (click)="setRange('week')">สัปดาห์นี้</button>
+    <button class="pill" (click)="setRange('month')">เดือนนี้</button>
+    <button class="pill" (click)="setRange('lastweek')">สัปดาห์ที่แล้ว</button>
+  </div>
+  <div class="cards" style="grid-template-columns: 1fr 1fr;">
+    <article class="card"><h3>จำนวนประกาศ</h3><div class="price">{{ count }}</div></article>
+    <article class="card"><h3>ราคาเฉลี่ย (บาท/เดือน)</h3><div class="price">฿{{ avgPrice }}</div></article>
+  </div>
+  <div class="table-wrap" style="margin-top:14px;">
+    <table class="table">
+      <thead><tr><th>#</th><th>ชื่อประกาศ</th><th>พื้นที่</th><th>ประเภท</th><th>ราคา</th><th>สถานะ</th><th>วันที่เพิ่ม</th><th></th></tr></thead>
+      <tbody>
+        @for (l of filtered; track l.id) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ l.title }}</td>
+            <td>{{ l.area }}</td>
+            <td>{{ l.type }}</td>
+            <td>{{ l.price | currency:'THB':'symbol' }}</td>
+            <td>{{ l.status }}</td>
+            <td>{{ l.createdAt | date:'yyyy-MM-dd HH:mm' }}</td>
+            <td><a class="badge" [routerLink]="['/listing', l.id]">ดู</a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

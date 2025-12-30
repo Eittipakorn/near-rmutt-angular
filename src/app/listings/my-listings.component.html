@@ -1,0 +1,28 @@
+
+<h2>หอพักของฉัน</h2>
+@if (!items.length) { ยังไม่มีประกาศของคุณ } @else {
+  <div class="cards">
+    @for (l of items; track l.id) {
+      <article class="card">
+        <h3 style="margin:12px;">{{ l.title }}</h3>
+        <div style="margin:0 12px 12px;">{{ l.area }} · {{ l.type }}</div>
+        @if (l.price !== null) { <div style="margin:0 12px 12px;">ราคา {{ l.price | currency:'THB':'symbol' }}</div> }
+        <div class="actions">
+          <button (click)="startEdit(l)">แก้ไข</button>
+          <button (click)="remove(l.id)">ลบ</button>
+        </div>
+      </article>
+    }
+  </div>
+}
+@if (editing) {
+  <div class="panel">
+    <h3>แก้ไขประกาศ</h3>
+    <form (ngSubmit)="save()" class="form-grid">
+      <label>ชื่อหอ <input [(ngModel)]="editing.title" name="title"></label>
+      <label>ราคา <input type="number" [(ngModel)]="editing.price" name="price"></label>
+      <button type="submit">บันทึก</button>
+      <button type="button" (click)="cancel()">ยกเลิก</button>
+    </form>
+  </div>
+}

@@ -1,0 +1,77 @@
+<div class="container listing-create">
+  <h2 class="page-title">เพิ่มประกาศหอ</h2>
+
+  <form (ngSubmit)="save()" class="form-card">
+    <div class="grid-2">
+      <label>ชื่อหอ
+        <input type="text" [(ngModel)]="title" name="title" required>
+      </label>
+
+      <label>พื้นที่
+        <input type="text" [(ngModel)]="area" name="area">
+      </label>
+
+      <label>ประเภท
+        <select [(ngModel)]="type" name="type">
+          <option>หอพัก</option>
+          <option>อพาร์ตเมนต์</option>
+        </select>
+      </label>
+
+      <label>ราคา/ด.
+        <input type="number" [(ngModel)]="price" name="price" required>
+      </label>
+
+      <label>มัดจำ
+        <input type="number" [(ngModel)]="deposit" name="deposit">
+      </label>
+
+      <label>ค่าไฟ
+        <input type="text" [(ngModel)]="electricity_rate" name="electricity_rate" placeholder="เช่น 7 บาท/ยูนิต">
+      </label>
+
+      <label>ค่าน้ำ
+        <input type="text" [(ngModel)]="water_rate" name="water_rate" placeholder="เช่น 30 บาท/ยูนิต">
+      </label>
+
+      <label>ค่าอื่น ๆ
+        <input type="number" [(ngModel)]="other_fee" name="other_fee" placeholder="0">
+      </label>
+
+      <label>อินเทอร์เน็ต
+        <input type="text" [(ngModel)]="internet" name="internet" placeholder="เช่น ฟรี / 200 บาท/ด.">
+      </label>
+    </div>
+    <label class="span-2">รายละเอียดเพิ่มเติม
+      <textarea [(ngModel)]="description" name="description" rows="6"
+        placeholder="ตัวอย่าง: สิ่งอำนวยความสะดวก/เงื่อนไข ฯลฯ"></textarea>
+    </label>
+    <div class="grid-3">
+      <label>โทรศัพท์
+        <input type="text" [(ngModel)]="contact_phone" name="contact_phone">
+      </label>
+
+      <label>LINE ID
+        <input type="text" [(ngModel)]="contact_line" name="contact_line">
+      </label>
+
+      <label>Facebook URL
+        <input type="text" [(ngModel)]="contact_facebook" name="contact_facebook">
+      </label>
+
+      <label>อีเมล
+        <input type="email" [(ngModel)]="contact_email" name="contact_email">
+      </label>
+
+      <label>ลิงก์แผนที่/Google Maps
+        <input type="text" [(ngModel)]="map_url" name="map_url" placeholder="https://maps.google.com/...">
+      </label>
+    </div>
+    <div class="actions span-2">
+      <button type="submit" class="btn">บันทึกข้อมูล</button>
+      <a class="btn btn-outline" routerLink="/owner/listings">ไปจัดการประกาศ</a>
+    </div>
+
+    @if (msg) { <div class="alert">{{ msg }}</div> }
+  </form>
+</div>

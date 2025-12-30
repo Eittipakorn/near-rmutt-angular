@@ -1,0 +1,41 @@
+<header class="app-header">
+  <h1>near RMUTT</h1>
+
+  <nav class="nav">
+    <a routerLink="/listings" routerLinkActive="active" aria-label="หน้าหลัก">หน้าหลัก</a>
+    <a routerLink="/search" routerLinkActive="active" aria-label="ค้นหา">ค้นหา</a>
+
+    @if (us.isAuthenticated() && !us.isOwner()) {
+      <a routerLink="/my-bookings" routerLinkActive="active" aria-label="การจองของฉัน">การจองของฉัน</a>
+    }
+
+    @if (us.isOwner()) {
+      <a routerLink="/owner/dashboard" routerLinkActive="active" aria-label="จัดการหอพักของฉัน">จัดการหอพักของฉัน</a>
+      <a routerLink="/create" routerLinkActive="active" aria-label="ลงประกาศ">ลงประกาศ</a>
+      <a routerLink="/reports" routerLinkActive="active" aria-label="รายงาน">รายงาน</a>
+      <a routerLink="/upload" routerLinkActive="active" aria-label="อัปโหลดรูป">อัปโหลดรูป</a>
+    }
+
+    <a routerLink="/profile" routerLinkActive="active">โปรไฟล์</a>
+  </nav>
+
+  <div class="auth"><app-auth-status></app-auth-status></div>
+</header>
+
+<main class="app-main"><router-outlet></router-outlet></main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-title">เกี่ยวกับเรา</div>
+      <div>เว็บค้นหาหอพักใกล้ RMUTT เพื่อการติดต่อที่สะดวก</div>
+      <div>นโยบายความเป็นส่วนตัว · ติดต่อเรา</div>
+    </div>
+    <div>
+      <div class="footer-title">ติดต่อเรา</div>
+      <div>โทร: 02-105-4287</div>
+      <div>อีเมล: near.rmutt@gmail.com</div>
+      <div>Line: @nearrmutt</div>
+    </div>
+  </div>
+</footer>

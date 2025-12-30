@@ -1,0 +1,16 @@
+
+<h2 class="page-title container" style="text-align: left; padding-left: 190px;">หอพักแนะนำ</h2>
+<div class="cards container">
+  @for (d of data(); track d.id) {
+    <article class="card">
+      @if (d.images.length) { <img [src]="d.images[0]" [alt]="d.title"> }
+      <h3>{{ d.title }}</h3>
+      <div class="sub">พื้นที่: {{ d.area }} · ประเภท: {{ d.type }}</div>
+      @if (d.price !== null) { <div class="price">{{ d.price | currency:'THB':'symbol' }}/ด.</div> }
+      <div class="actions">
+        @if (us.isAuthenticated() && !us.isOwner()) { <a class="btn btn-outline" [routerLink]="['/booking', d.id]">จองห้องนี้</a> }
+        <a class="btn" [routerLink]="['/listing', d.id]">รายละเอียด</a>
+      </div>
+    </article>
+  }
+</div>

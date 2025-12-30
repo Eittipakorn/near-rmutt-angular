@@ -1,0 +1,69 @@
+@if (!listing) { กำลังโหลดรายละเอียด… } @else {
+  <div class="container" style="display:grid; grid-template-columns: 1.2fr .8fr; gap: 18px;">
+    <section>
+      <h2 class="page-title">{{ listing!.title }}</h2>
+      @if (listing!.images?.length) {
+        <img [src]="listing!.images[selectedImage]" [alt]="listing!.title"
+             style="width:100%; height:360px; object-fit:cover; border:1px solid #e2e8f0; border-radius:12px;" />
+        <div style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;">
+          @for (img of listing!.images; track $index) {
+            <img [src]="img" alt="thumb"
+                 (click)="selectedImage = $index"
+                  style="width:78px; height:60px; object-fit:cover; border-radius:8px; cursor:pointer;"
+                  [style.border]="'2px solid ' + ($index === selectedImage ? '#60a5fa' : '#e5e7eb')"/>
+          }
+        </div>
+      }
+
+      @if (listing!.price !== null) {
+        <div class="price" style="margin-top:12px;">
+          {{ listing!.price | currency:'THB':'symbol' }}/ด.
+        </div>
+      }
+   
+      <div class="search-panel" style="margin-top:12px;">
+        <div class="footer-title">รายละเอียดเพิ่มเติม:</div>
+        <div style="white-space:pre-wrap;">{{ listing!.location }}</div>
+      </div>
+      @if (us.isAuthenticated() && !us.isOwner()) {
+        <div style="margin-top:12px;">
+          <a class="btn btn-compact" [routerLink]="['/booking', listing!.id]">จอง/สอบถาม</a>
+        </div>
+      }
+    </section>
+    <aside class="summary">
+      <div class="price">{{ listing!.price | currency:'THB':'symbol' }}/ด.</div>
+      <div class="meta">พื้นที่: {{ listing!.area }} · ประเภท: {{ listing!.type }}</div>
+      <div class="search-panel" style="margin-top:12px;">
+        <div class="footer-title">รายละเอียดเพิ่มเติม:</div>
+        <div style="white-space:pre-wrap;">{{ listing!.description }}</div>
+      </div>
+      <hr style="border:none; border-top:1px solid #e2e8f0; margin:12px 0;">
+      <div class="meta" style="display:grid; gap:6px;">
+      
+        @if (listing!.deposit != null) {
+          <div>เงินประกัน: <b>{{ listing!.deposit | number }}</b> บาท</div>
+        }
+        @if (listing!.electricity_rate) {
+          <div>ค่าไฟ: <b>{{ listing!.electricity_rate }}</b></div>
+        }
+        @if (listing!.water_rate) {
+          <div>ค่าน้ำ: <b>{{ listing!.water_rate }}</b></div>
+        }
+        @if (listing!.other_fee != null) {
+          <div>ค่าอื่น ๆ: <b>{{ listing!.other_fee | number }}</b> บาท</div>
+        }
+        @if (listing!.internet) {
+          <div>อินเทอร์เน็ต: <b>{{ listing!.internet }}</b></div>
+        }
+      </div>
+      <hr style="border:none; border-top:1px solid #e2e8f0; margin:12px 0;">
+      @if (us.isAuthenticated() && !us.isOwner()) {
+        <button class="btn">โทร {{ listing!.contact_phone }}</button>
+        @if (listing!.contact_line) {
+          <button class="btn btn-outline" style="margin-top:8px;">LINE {{ listing!.contact_line }}</button>
+        }
+      }
+    </aside>
+  </div>
+}

@@ -1,0 +1,23 @@
+
+<h2>รายงานคำขอจอง (เจ้าของหอ)</h2>
+@if (!list.length) { ยังไม่มีคำขอจองสำหรับหอของคุณ } @else {
+  <table class="table">
+    <thead><tr><th>#</th><th>Listing</th><th>ช่วงเวลา</th><th>ผู้จอง</th><th>สถานะ</th><th>จัดการ</th></tr></thead>
+    <tbody>
+      @for (b of list; track b.id) {
+        <tr>
+          <td>{{ b.id }}</td>
+          <td>{{ b.listingId }}</td>
+          <td>{{ b.startDate }} – {{ b.endDate }}</td>
+          <td>{{ b.userEmail }}</td>
+          <td>{{ b.status ?? 'pending' }}</td>
+          <td class="row-actions">
+            <button (click)="approve(b.id)">approve</button>
+            <button (click)="reject(b.id)">reject</button>
+            <button (click)="cancel(b.id)">cancel</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

@@ -1,0 +1,26 @@
+
+<h2 class="page-title container" style="text-align: left; padding-left: 190px;">ประกาศของฉัน</h2>
+<div class="container" style="margin-bottom:10px;">
+  <a class="btn" routerLink="/create">+ เพิ่มประกาศ</a>
+</div>
+<div class="container table-wrap">
+  <table class="table">
+    <thead><tr><th>#</th><th>ชื่อ</th><th>พื้นที่</th><th>ประเภท</th><th>ราคา</th><th>สถานะ</th><th>จัดการ</th></tr></thead>
+    <tbody>
+      @for (l of items; track l.id) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ l.title }}</td>
+          <td>{{ l.area }}</td>
+          <td>{{ l.type }}</td>
+          <td>{{ l.price | currency:'THB':'symbol' }}</td>
+          <td>{{ l.status }}</td>
+          <td>
+            <a class="badge" [routerLink]="['/listing', l.id]">ดู</a>
+            <button class="btn btn-outline" style="margin-left:6px;" (click)="remove(l.id)">ลบ</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

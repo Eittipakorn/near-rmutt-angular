@@ -1,0 +1,16 @@
+
+<div class="container login-page">
+  <div class="search-panel">
+    <h2 class="page-title" style=" text-align: center;">เข้าสู่ระบบ</h2>
+    @if (error) { <div class="alert">{{ error }}</div> }
+    <form (ngSubmit)="onSubmit()" novalidate class="form-grid">
+      <label>อีเมล <input type="email" [(ngModel)]="email" name="email" required autocomplete="username" /></label>
+      <label>รหัสผ่าน <input type="password" [(ngModel)]="password" name="password" required autocomplete="current-password" /></label>
+      <button type="submit" class="btn">เข้าสู่ระบบ</button>
+    </form>
+     <div class="auth-alt">
+      ยังไม่มีบัญชีใช่ไหม?
+      <a routerLink="/register" class="auth-link">สมัครสมาชิก</a>
+    </div>
+  </div>
+</div>
